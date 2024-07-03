@@ -1,14 +1,11 @@
 const {contextBridge, ipcRenderer} = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
-    saveAnswer: (note) => {
-        ipcRenderer.send('save-answer', note)
+    getQuestions: () => {
+        ipcRenderer.send('get-questions')
     },
-    sendResponse: () => {
-        ipcRenderer.send('send-response')
-    },
-    loadResponse: (callback) => {
-        ipcRenderer.on('load-response', (event, data) => {
+    getLoadedQuestions: (callback) => {
+        ipcRenderer.on('loaded-questions', (event, data) => {
             callback(data);
         })
     }
