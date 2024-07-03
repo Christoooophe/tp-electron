@@ -4,7 +4,9 @@
     "choices" : [
       "Oui",
       "Non",
-      "Peut-être"
+      "Peut-être",
+      "Je ne sais pas",
+      "La mer noire"
     ],
     "reponse" : "Oui"
   },
