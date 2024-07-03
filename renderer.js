@@ -7,7 +7,6 @@ buttonSend.addEventListener('click', () => {
     window.electronAPI.getQuestions();
     window.electronAPI.getLoadedQuestions(getQuestions);
     getQuestionRenderer(questions[0]);
-    console.log("heeeeey ", questions[0]);
 })
 
 function getQuestionRenderer(data) {
@@ -15,10 +14,13 @@ function getQuestionRenderer(data) {
     if (balise) {
         game.removeChild(balise);
     }
-    const divQuestion = document.createElement('p')
-    divQuestion.id = "bloc-question"
-    console.log(data)
-    divQuestion.textContent = data.question
+    const divQuestion = document.createElement('div')
+    const mappedQuestions = data.choices.map((item) => {
+        return `<button className="possible-answer">${item}</button>`;
+    });
+    divQuestion.id = "bloc-question";
+    divQuestion.innerHTML = `<p>${data.question}</p>`
+    divQuestion.innerHTML += mappedQuestions;
     game.appendChild(divQuestion)
 }
 
