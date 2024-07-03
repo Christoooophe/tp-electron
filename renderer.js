@@ -7,7 +7,7 @@ buttonSend.addEventListener('click', () => {
 })
 
 
-function getQuestions(questions) {
-    questions = questions;
+function getQuestions(data) {
+    questions = data;
     console.log(questions)
 }
