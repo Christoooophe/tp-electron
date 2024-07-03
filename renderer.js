@@ -1,8 +1,19 @@
-const buttonSend = document.getElementById("button-send");
 let questions = "";
 let response = "";
 let increment = 0;
+let score = 0;
+let name = "default-user"
+
+const buttonName = document.getElementById("button-name");
+const buttonSend = document.getElementById("button-send");
 const game = document.getElementById("game");
+
+buttonName.addEventListener('click', () => {
+    const inputName = document.getElementById("text-input").value;
+    name = inputName;
+    document.getElementById('nameH1').textContent = name;
+})
+
 buttonSend.addEventListener('click', () => {
     window.electronAPI.getQuestions();
     window.electronAPI.getLoadedQuestions(getQuestions);
@@ -20,16 +31,19 @@ function getQuestionRenderer(data) {
         return `<button onclick="getResponse(this.textContent, response)" class="possible-answer">${item}</button>`;
     });
     divQuestion.id = "bloc-question";
-    divQuestion.innerHTML = `<p>${data.question}</p>`
+    divQuestion.innerHTML += `<p>${data.question}</p>`
     divQuestion.innerHTML += mappedQuestions;
     game.appendChild(divQuestion)
 }
 
 function getResponse(e, reponse) {
-    console.log(e, reponse)
+    if (e === reponse) {
+        score++;
+    }
     increment++;
     if (increment > questions.length - 1) {
-        return alert("GG !")
+        window.electronAPI.sendScore(name, score)
+        return alert(score)
     }
     getQuestionRenderer(questions[increment])
 }

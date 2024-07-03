@@ -1,9 +1,9 @@
 // Modules to control application life and create native browser window
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
+const questions = require('./data/questions.json');
+const fs = require("fs");
 
-let data = "";
-const questions = require('./data/questions.json')
 function createWindow () {
     const mainWindow = new BrowserWindow({
         width: 1400,
@@ -27,6 +27,13 @@ app.whenReady().then(() => {
 
 ipcMain.on('get-questions', (event) => {
     event.sender.send('loaded-questions', questions)
+})
+
+ipcMain.on('send-score', (event, score, name) => {
+    fs.appendFile("./data/results.txt", score + " : " + name + "\r\n", 'utf8', (err) => {
+        if (err) throw err;
+        console.log("Le fichier a été enregistré");
+    });
 })
 
 app.on('window-all-closed', function () {

@@ -8,5 +8,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
         ipcRenderer.on('loaded-questions', (event, data) => {
             callback(data);
         })
-    }
+    },
+    sendScore: (score, name) => {
+        ipcRenderer.send('send-score', score, name)
+    },
+
 })
