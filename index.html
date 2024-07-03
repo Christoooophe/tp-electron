@@ -6,12 +6,20 @@
     <title>Title</title>
 </head>
 <body>
-<p>oui</p>
-    <h1 id="nameH1"></h1>
-    <input type="text" id="text-input">
-    <button type="button" id="button-name">Entrer</button>
-    <button type="button" id="button-send">Commencer le jeu</button>
-    <div id="game"></div>
+<div class="m-2">
+    <h1 class="text-center">Jeu de l'année</h1>
+    <h4 class="text-center fs-6">Upgradez vers la version payante pour avoir du CSS un minimum acceptable</h4>
+    <h1 class="text-center" id="nameH1"></h1>
+    <div class="d-flex justify-content-center">
+        <label>Indiquez votre nom</label><br>
+        <input class="text-center" type="text" id="text-input"><br>
+        <button class="btn btn-primary text-center" type="button" id="button-name">Entrer</button><br>
+    </div>
+    <button class="btn btn-success text-center" type="button" id="button-send">Commencer le jeu</button><br>
+    <p>Il faut cliquer deux fois sur le bouton pour lancer la partie, un ticket est en cours de résolution par notre équipe technique</p>
+    <div id="game" class="text-center"></div>
+</div>
+
     <script src="./renderer.js"></script>
 </body>
 </html>

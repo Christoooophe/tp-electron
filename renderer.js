@@ -14,10 +14,13 @@ buttonName.addEventListener('click', () => {
     document.getElementById('nameH1').textContent = name;
 })
 
-buttonSend.addEventListener('click', () => {
+function launchGame() {
     window.electronAPI.getQuestions();
     window.electronAPI.getLoadedQuestions(getQuestions);
     getQuestionRenderer(questions[increment]);
+}
+buttonSend.addEventListener('click', () => {
+    launchGame();
 })
 
 function getQuestionRenderer(data) {
@@ -28,10 +31,10 @@ function getQuestionRenderer(data) {
     }
     const divQuestion = document.createElement('div')
     const mappedQuestions = data.choices.map((item) => {
-        return `<button onclick="getResponse(this.textContent, response)" class="possible-answer">${item}</button>`;
+        return `<button class="btn btn-info" onclick="getResponse(this.textContent, response)" class="possible-answer">${item}</button>`;
     });
     divQuestion.id = "bloc-question";
-    divQuestion.innerHTML += `<p>${data.question}</p>`
+    divQuestion.innerHTML += `<p class="text-center fs-1 m-2">${data.question}</p>`
     divQuestion.innerHTML += mappedQuestions;
     game.appendChild(divQuestion)
 }
