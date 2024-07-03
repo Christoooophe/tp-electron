@@ -3,6 +3,7 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
 
 let data = "";
+const questions = require('./data/questions.json')
 function createWindow () {
     const mainWindow = new BrowserWindow({
         width: 1400,
@@ -24,15 +25,11 @@ app.whenReady().then(() => {
     })
 })
 
-ipcMain.on('save-answer', (event, answer) => {
-    data = answer;
-    console.log(data)
-})
-
-ipcMain.on('send-response', (event) => {
-    event.sender.send('load-response', data)
+ipcMain.on('get-questions', (event) => {
+    event.sender.send('loaded-questions', questions)
 })
 
 app.on('window-all-closed', function () {
     if (process.platform !== 'darwin') app.quit()
 })
+

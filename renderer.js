@@ -1,15 +1,13 @@
 const buttonSend = document.getElementById("button-send");
 let reponse = "";
+let questions = "";
 buttonSend.addEventListener('click', () => {
-    const answer = document.getElementById("input-text").value;
-    console.log(answer)
-    window.electronAPI.saveAnswer(answer);
-    window.electronAPI.sendResponse();
-    window.electronAPI.loadResponse(setNotes);
+    window.electronAPI.getQuestions();
+    window.electronAPI.getLoadedQuestions(getQuestions);
 })
 
 
-function setNotes(notes) {
-    note = notes;
-    console.log(note)
+function getQuestions(questions) {
+    questions = questions;
+    console.log(questions)
 }
