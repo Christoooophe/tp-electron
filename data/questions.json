@@ -1,0 +1,29 @@
+[
+  {
+    "question" : "Pourquoi ?",
+    "choices" : [
+      "Oui",
+      "Non",
+      "Peut-être"
+    ],
+    "reponse" : "Oui"
+  },
+  {
+    "question" : "Why ?",
+    "choices" : [
+      "Yes",
+      "No",
+      "Maybe"
+    ],
+    "reponse" : "Maybe"
+  },
+  {
+    "question" : "Warum ?",
+    "choices" : [
+      "Ja",
+      "Nein",
+      "Vielleicht"
+    ],
+    "reponse" : "Nein"
+  }
+]
